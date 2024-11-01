@@ -1,0 +1,25 @@
+#Swap and Maximize
+Input: arr[] = [4, 2, 1, 8]
+Output: 18
+Explanation: After Shuffling, we get [1, 8, 2, 4]. Sum of absolute difference between consecutive elements 
+after rearrangement = |1 - 8| + |8 - 2| + |2 - 4| + |4 - 1| = 7 + 6 + 2 + 3 = 18.
+
+class Solution {
+    public long maxSum(Long[] arr) {
+        // code here
+      Arrays.sort(arr);
+      int n = arr.length;
+      int i=0 ;
+      int j=arr.length-1;
+      int sum =0;
+      while(i<j){
+          sum+=arr[j]-arr[i];   // Difference between the largest and smallest values
+          sum+=arr[j]-arr[i+1];   // Add difference between the largest value and the next element
+          i++;
+          j--;
+      }
+        // Add difference between middle element and the first element to complete the cycle
+      sum+=arr[n/2]-arr[0];
+      return sum ; 
+    }
+}
