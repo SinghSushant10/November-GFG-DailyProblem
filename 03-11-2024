@@ -1,0 +1,15 @@
+#Is Linked List Length Even?
+TC: O(n) 
+SC: O(1)
+class Solution {
+    public boolean isLengthEven(Node head) {
+        // code here
+        Node temp = head;
+        int count = 0;
+        while(temp!=null){
+            temp= temp.next;
+            count++;
+        }
+      return count%2==0;
+    }
+}
