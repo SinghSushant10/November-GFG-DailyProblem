@@ -1,0 +1,31 @@
+#Rotate by 90 degree
+Given a square mat[][]. The task is to rotate it by 90 degrees in clockwise direction without using any extra space.
+
+class GFG {
+    static void rotate(int mat[][]) {
+        // Code Here
+        int n = mat.length;
+        // step 1 : Trasnpose the matrix 
+        for(int i=0; i<n;i++){
+            for(int j=i; j<n;j++){
+                int temp = mat[i][j];
+                mat[i][j]=mat[j][i];
+                mat[j][i]=temp;
+            }
+        }
+        //step 2 : Reverse each rowo 
+        for(int i =0; i<n; i++){
+            reverseRow(mat[i]);
+        }
+    }
+       static void reverseRow(int[]row){
+            int start= 0 , end = row.length-1;
+            while(start<end){
+                int temp = row[start];
+                row[start] = row[end];
+                row[end]= temp;
+                start++;
+                end--;
+            }
+        }
+}
