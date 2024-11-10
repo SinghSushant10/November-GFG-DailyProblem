@@ -1,0 +1,52 @@
+# Union of Two Sorted Arrays with Distinct Elements
+Input: a[] = [1, 2, 3, 4, 5], b[] = [1, 2, 3, 6, 7]
+Output: 1 2 3 4 5 6 7
+Explanation: Distinct elements including both the arrays are: 1 2 3 4 5 6 7.
+
+class Solution {
+    // Function to return a list containing the union of the two arrays.
+    public static ArrayList<Integer> findUnion(int a[], int b[]) {
+        // add your code here
+         // Using TreeSet to store unique elements in sorted order
+        Set<Integer> set = new TreeSet<>();
+        
+        // Add all elements from array `a` to the set
+        for (int num : a) {
+            set.add(num);
+        }
+        
+        // Add all elements from array `b` to the set
+        for (int num : b) {
+            set.add(num);
+        }
+        
+        // Convert set to ArrayList and return
+        return new ArrayList<>(set);
+    }
+}
+
+
+ public static ArrayList<Integer> findUnion(int a[], int b[]) {
+        // add your code here
+        int i=0 , j=0 , n=a.length, m=b.length;
+        ArrayList<Integer> ans = new ArrayList<>();
+        while(i<n || j<m){
+            int num1=i<n ? a[i]:Integer.MAX_VALUE;
+            int num2=j<m ? b[i]:Integer.MAX_VALUE;
+            if(num1<num2){
+                ans.add(num1);
+                i++;
+            }
+            else if(num2<num1){
+                ans.add(num2);
+                j++;
+            }
+            else{
+                ans.add(num1);
+                i++;
+                j++;
+            }
+        }
+        return ans;
+        
+    }
