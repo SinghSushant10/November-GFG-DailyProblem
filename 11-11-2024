@@ -1,0 +1,24 @@
+#Make array elements unique
+Input: arr[] = [1, 2, 2]
+Output: 1
+Explanation: If we increase arr[2] by 1 then the resulting array becomes {1, 2, 3} and has all unique values.Hence, the answer is 1 in this case.
+
+
+class Solution {
+    public int minIncrements(int[] arr) {
+        // Code here
+        Arrays.sort(arr);
+        int ans=0;
+        for(int i=1;i<arr.length;i++){
+        //Check if the current element is less than or equal to the previous element
+            if(arr[i]<=arr[i-1]){
+        //Calculate the increments needed to make arr[i] greater than arr[i - 1]
+                ans=ans+arr[i-1]-arr[i]+1;
+        //Update arr[i] to be one more than arr[i - 1] to maintain the strictly increasing order
+                arr[i]=arr[i-1]+1;
+            }
+        }
+        return ans ;
+        
+    }
+}
