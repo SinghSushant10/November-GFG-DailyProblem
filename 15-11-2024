@@ -1,0 +1,21 @@
+#Second Largest
+Input: arr[] = [12, 35, 1, 10, 34, 1]
+Output: 34
+Explanation: The largest element of the array is 35 and the second largest element is 34.
+SC:O(n) TC:O(1)
+class Solution {
+    public int getSecondLargest(int[] arr) {
+        // Code Here
+        int max1=Integer.MIN_VALUE, max2=Integer.MIN_VALUE;
+        for(int x:arr){
+            if(x>max1){
+                max2=max1;
+                max1=x;
+            }
+            else if(x>max2 && x!=max1){
+                max2=x;
+            }
+        }
+        return max2!=Integer.MIN_VALUE? max2:-1;
+    }
+}
