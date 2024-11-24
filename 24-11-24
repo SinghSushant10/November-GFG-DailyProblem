@@ -1,0 +1,32 @@
+#Kadane's Algorithm
+Given an integer array arr[]. You need to find the maximum sum of a subarray.
+Examples:
+Input: arr[] = [2, 3, -8, 7, -1, 2, 3]
+Output: 11
+Explanation: The subarray {7, -1, 2, 3} has the largest sum 11.
+Input: arr[] = [-2, -4]
+Output: -2
+Explanation: The subarray {-2} has the largest sum -2.
+
+TC:O(n)  SC(1)
+class Solution {
+
+    // arr: input array
+    // Function to find the sum of contiguous subarray with maximum sum.
+    int maxSubarraySum(int[] arr) {
+
+        // Your code here
+        int n=arr.length;
+        int sum=0, 
+    // Start with the smallest possible integer value to handle negative sums.
+        int ans=Integer.MIN_VALUE;  
+        for(int i=0;i<n;i++){
+            sum+=arr[i];
+            ans=Math.max(ans,sum);
+    // If the running sum becomes negative, reset it to 0.
+    // This ensures we start fresh with the next potential subarray.
+            if(sum<0) sum=0;
+        }
+        return ans;
+    }
+}
