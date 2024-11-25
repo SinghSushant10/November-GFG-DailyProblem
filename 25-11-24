@@ -1,0 +1,29 @@
+#Maximum Product Subarray
+#Given an array arr[] that contains positive and negative integers (may contain 0 as well). Find the maximum product that we can get in a subarray of arr.
+Note: It is guaranteed that the output fits in a 32-bit integer.
+Examples
+Input: arr[] = [-2, 6, -3, -10, 0, 2]
+Output: 180
+Explanation: The subarray with maximum product is {6, -3, -10} with product = 6 * (-3) * (-10) = 180.
+
+SC:O(1)  TC(n)
+class Solution {
+    // Function to find maximum product subarray
+    int maxProduct(int[] arr) {
+        // code here
+        int n=arr.length;
+        int ans=Integer.MIN_VALUE;
+        int startProduct=1,endProduct=1;
+        for(int i=0;i<n;i++){
+            startProduct*=arr[i];
+            endProduct*=arr[n-i-1];
+            ans=Math.max(ans,Math.max(startProduct,endProduct));
+            
+            // Reset the product to 1 if it becomes zero
+            // (indicating a zero element in the array, which breaks the subarray)
+            if(startProduct==0) startProduct=1;
+            if(endProduct==0) endProduct=1;
+        }
+        return ans;
+    }
+}
