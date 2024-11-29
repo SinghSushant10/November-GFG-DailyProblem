@@ -1,0 +1,72 @@
+#Add Binary Strings
+#Given two binary strings s1 and s2 consisting of only 0s and 1s. Find the resultant string after adding the two Binary Strings.
+Note: The input strings may contain leading zeros but the output string should not have any leading zeros.
+Input: s1 = "1101", s2 = "111"
+Output: 10100
+Explanation:
+ 1101
++ 111
+10100
+
+
+IMP :   //0+0 =0
+        //1+0 or 0+1 =1
+        //1+1=0    1+1+1=1   carry=1
+
+
+class Solution {
+    public String addBinary(String s1, String s2) {
+        // code here
+        StringBuilder  ans = new StringBuilder();
+        //pointer to traversal from both string from end 
+        int i=s1.length()-1;
+        int j=s2.length()-1;
+        //variable to keep track of carry from the previous addion 
+      
+        int carry=0;
+        while(i>=0 || j>=0){
+            int count1s=0;  //count for number of 1's in then currrent step
+            
+            if(i>=0 && s1.charAt(i)=='1'){
+                count1s++;
+            }
+            if(j>=0 && s2.charAt(j)=='1'){
+                count1s++;
+            }
+            
+            int sum=count1s+carry;
+            
+            if(sum==0){
+                ans.append('0');
+                carry=0;
+            }
+            else if(sum==1){
+                ans.append('1');
+                carry=0;
+            }
+            else if(sum==2){
+                ans.append('0');
+                carry=1;
+            }
+            else if(sum==3){
+                ans.append('1');
+                carry=1;
+            }
+            i--;
+            j--;
+        }
+        // if the carry left after the loop, add to the result
+        if(carry==1){
+            ans.append('1');
+        }
+        ans.reverse();
+        
+        // remove leading zeros from the final result 
+        int startIndex=0;
+        while(startIndex<ans.length() && ans.charAt(startIndex)=='0'){
+            startIndex++;
+        }
+        
+        return ans.substring(startIndex);
+    }
+}
